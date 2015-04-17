@@ -22,25 +22,26 @@ import javax.ws.rs.Path;
  *
  * @author chintan
  */
-@Path("/buyer")
-public class Buyer {
+@Path("/purchase")
+public class Purchase {
         @POST
     public void post(String str) {
         try {
             JsonObject json = Json.createReader(new StringReader(str)).readObject();
-            String b_name = json.getString("b_name");
-            String b_company = json.getString("b_company");
-            String b_email = json.getString("b_email");
+            String p_date = json.getString("p_date");
+            String company_name = json.getString("company_name");
+             String product_name = json.getString("product_name");
+            String quantity = json.getString("quantity");
            
             Connection conn = getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO buyer (b_name,b_company,b_email) VALUES (?,?,?)");
-            pstmt.setString(1, b_name);
-            pstmt.setString(2, b_company);
-            pstmt.setString(3, b_email);
-            
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO purchase (p_date,company_name,product_name,quantity) VALUES (?,?,?,?)");
+            pstmt.setString(1, p_date);
+            pstmt.setString(2, company_name);
+            pstmt.setString(3, product_name);
+               pstmt.setString(4, quantity);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

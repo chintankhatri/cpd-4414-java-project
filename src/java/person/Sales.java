@@ -25,7 +25,7 @@ import javax.ws.rs.PathParam;
  * @author c0637609
  */
 @Path("/form")
-public class Register {
+public class Sales {
 
     @POST
     public void post(String str) {
@@ -43,7 +43,7 @@ public class Register {
             pstmt.setString(4, quantity);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -66,7 +66,7 @@ public class Register {
 //                    .build();
 //            result = json.toString();
 //        } catch (SQLException ex) {
-//            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        return result;
 //    }
