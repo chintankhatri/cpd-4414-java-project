@@ -6,7 +6,7 @@
         <meta name='robots' content='all, follow' />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <title>Sales Form</title>   
+        <title>Purchase Form</title>   
         <link href="public/css/default.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="public/css/blue.css" rel="stylesheet" type="text/css" media="screen" /> <!-- color skin: blue / red / green / dark -->
         <link href="public/css/datePicker.css" rel="stylesheet" type="text/css" media="screen" />
@@ -26,16 +26,16 @@
         <script src="jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                $('#sales').click(function() {
+                $('#buyer').click(function() {
                     $.ajax({
-                        url: "./f/form",
+                        url: "./f/buyer",
                         dataType: "json",
                         contentType: 'application/json; charset=UTF-8',
                         data: JSON.stringify({
-                            "s_date": $("#s_date").val(),
-                            "cust_name": $("#cust_name").val(),
-                            "product_name": $("#product_name").val(),
-                            "quantity": $("#quantity").val()}),
+                            "b_name": $("#b_name").val(),
+                            "b_company": $("#b_company").val(),
+                          
+                            "b_email": $("#b_email").val()}),
                         method: "post"
 
 
@@ -84,7 +84,7 @@
                 <!-- /box -->
                 <div class="box">
                     <div class="headlines">
-                        <h2><span>Sales Form</span></h2>
+                        <h2><span>Purchase Form</span></h2>
                         <a href="#help" class="help"></a>
                     </div>
                     <div class="box-content">
@@ -94,24 +94,21 @@
 
 
                                 <div class="clearfix">
-                                    <div class="lab"><label for="input-three">Date:</label></div>
-                                    <div class="con"><input type="text" class="input"  id="s_date" /></div>
+                                    <div class="lab"><label for="input-three">Name:</label></div>
+                                    <div class="con"><input type="text" class="input"  id="b_name" /></div>
                                 </div>
                                 <div class="clearfix">
-                                    <div class="lab"><label for="input-three">Customer Name:</label></div>
-                                    <div class="con"><input type="text" class="input" id="cust_name" /></div>
+                                    <div class="lab"><label for="input-three">Company Name:</label></div>
+                                    <div class="con"><input type="text" class="input" id="b_company" /></div>
                                 </div>
                                 <div class="clearfix">
-                                    <div class="lab"><label for="input-three">Product Name:</label></div>
-                                    <div class="con"><input type="text" class="input"  id="product_name" /></div>
+                                    <div class="lab"><label for="input-three">Email:</label></div>
+                                    <div class="con"><input type="text" class="input"  id="b_email" /></div>
                                 </div>
-                                <div class="clearfix">
-                                    <div class="lab"><label for="input-three">Quantity:</label></div>
-                                    <div class="con"><input type="text" class="input"  id="quantity" /></div>
-                                </div>
+                               
 
                                 <div class="btn-submit"><!-- Submit form -->
-                            <button id="sales" class="btn btn-default">Register</button> 
+                            <button id="buyer" class="btn btn-default">Insert</button> 
                                   
                                 </div>
                             </fieldset>    
