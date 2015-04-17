@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(person.Displaysales.class);
+        resources.add(person.Income.class);
         resources.add(person.Purchase.class);
         resources.add(person.Sales.class);
     }
