@@ -105,16 +105,16 @@
                             <td><%=rs.getString("product_name")%></td>
                             <td><%=rs.getString("quantity")%></td> 
 
-                            <td><a href="sales_edit.jsp?eid=<%=rs.getString(1)%>">Edit</a></td>
+                            <td><a href="f/form/did?id=<%=rs.getString(1)%>">Edit</a></td>
+                     
 
-                       
-                        <%
-                                cnt++;   
-                            } 
-                        %>
-                       
-                    
-                     </tr>
+                            <%
+                                    cnt++;
+                                }
+                            %>
+
+
+                        </tr>
 
                     </table>
                 </div>
@@ -128,7 +128,7 @@
             <div id="sidebar">
 
                 <!-- mainmenu -->
-                  <ul id="floatMenu" class="mainmenu">
+                <ul id="floatMenu" class="mainmenu">
                     <li class="first"><a href="#">Dashboard</a></li>
                     <li><a href="#">Income Expense</a>
                         <ul class="submenu">
@@ -136,16 +136,16 @@
                             <li><a href="display_expense.jsp">Show Expense</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Add new Transection</a>
-                     
+                    <li><a href="#">Add new Transection</a>
+
                     </li>
-                     <li><a href="#">Purchase</a>
+                    <li><a href="#">Purchase</a>
                         <ul class="submenu">
                             <li><a href="display_purchase.jsp">Show Purchase</a></li>          
                             <li><a href="purchase.html">New Purchase</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Sales</a>
+                    <li><a href="#">Sales</a>
                         <ul class="submenu">
                             <li><a href="display_sales.jsp">Show Sales</a></li>          
                             <li><a href="sales.html">New Sales</a></li>
@@ -196,5 +196,9 @@
 
         </div>
         <!-- /#main --> 
+    
     </body>
 </html>
+
+
+
