@@ -4,7 +4,7 @@
     Author     : chintan
 --%>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.logging.Logger"%>
 <%@page import="java.util.logging.Level"%>
@@ -17,7 +17,7 @@
     Connection conn = Connect.getConnection();
     PreparedStatement psmt = null;
     ResultSet rs = null;
-    psmt = conn.prepareStatement("SELECT * FROM sales");
+    psmt = conn.prepareStatement("SELECT * FROM income  where inc_type=0");
     rs = psmt.executeQuery();
 
 
@@ -86,35 +86,32 @@
                 <div class="box">
                     <table class="tab tab-drag">
                         <tr class="top nodrop nodrag">
-                            <th >Sales Id</th>
-                            <th >Sale Date</th>
-                            <th>Customer Name</th>
-                            <th>Product Name</th>          
-                            <th>Quantity</th>
+                            <th >Id</th>
+                            <th >Transection Date</th>
+                            <th>Description</th>
+                            <th>Amount</th>          
+                           
                             <th>Action</th>
                         </tr>
                         <tr>
-                            <%  int cnt = 1;
+                            <%                            int cnt = 1;
                                 while (rs.next()) {
                             %>
                         <tr>
 
-                            <td><%=rs.getString("s_id")%></td>
-                            <td><%=rs.getString("s_date")%></td>
-                            <td><%=rs.getString("cust_name")%></td>
-                            <td><%=rs.getString("product_name")%></td>
-                            <td><%=rs.getString("quantity")%></td> 
-
-                            <td><a href="sales_edit.jsp?eid=<%=rs.getString(1)%>">Edit</a></td>
-
-                       
-                        <%
-                                cnt++;   
-                            } 
-                        %>
-                       
+                            <td><%=rs.getString("inc_id")%></td>
+                            <td><%=rs.getString("inc_date")%></td>
+                            <td><%=rs.getString("inc_desc")%></td>
+                            <td><%=rs.getString("inc_amount")%></td>
                     
-                     </tr>
+
+                            <td><b><span lang="en-us"><a href="buyBook.jsp">Edit</a></span></b></td>
+                        </tr>
+                        <%
+                                cnt++;   /// increment of counter
+                            } /// End of while loop
+%>
+                        </tr>
 
                     </table>
                 </div>
@@ -128,7 +125,7 @@
             <div id="sidebar">
 
                 <!-- mainmenu -->
-                  <ul id="floatMenu" class="mainmenu">
+                <ul id="floatMenu" class="mainmenu">
                     <li class="first"><a href="#">Dashboard</a></li>
                     <li><a href="#">Income Expense</a>
                         <ul class="submenu">
@@ -160,7 +157,7 @@
             <!-- /#sidebar -->
             <!-- #footer -->
             <div id="footer">
-                <p>© 2010 Great Admin | <a href="#main">Top</a></p>
+                <p>Â© 2010 Great Admin | <a href="#main">Top</a></p>
             </div>
             <!-- /#footer -->
 

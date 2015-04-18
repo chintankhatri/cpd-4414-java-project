@@ -1,38 +1,32 @@
+
 <%-- 
-    Document   : display
-    Created on : 17-Apr-2015, 6:21:46 PM
-    Author     : chintan
+    Document   : index
+    Created on : 5-Apr-2015, 3:33:21 PM
+    Author     : c0646395
 --%>
-
-
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.util.logging.Logger"%>
-<%@page import="java.util.logging.Level"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.util.Date" %>
 <%@page import="Connect.Connect"%>
+<% Class.forName("com.mysql.jdbc.Driver"); %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    Connection conn = Connect.getConnection();
-    PreparedStatement psmt = null;
-    ResultSet rs = null;
-    psmt = conn.prepareStatement("SELECT * FROM sales");
-    rs = psmt.executeQuery();
 
 
-%>
+
+
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+          <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name='robots' content='all, follow' />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <title>sales</title>   
+       
         <link href="public/css/default.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="public/css/blue.css" rel="stylesheet" type="text/css" media="screen" /> <!-- color skin: blue / red / green / dark -->
         <link href="public/css/datePicker.css" rel="stylesheet" type="text/css" media="screen" />
-
+ 
         <link href="public/css/visualize.css" rel="stylesheet" type="text/css" media="screen" />
 
         <script type="text/javascript" src="public/js/jquery-1.4.2.min.js"></script>   
@@ -45,10 +39,16 @@
         <script type="text/javascript" src="public/js/date.js"></script>
         <!--[if IE]><script type="text/javascript" src="public/js/jquery.bgiframe.js"></script><![endif]-->
         <script type="text/javascript" src="public/js/jquery.datePicker.js"></script>
+        <script src="jquery.min.js"></script>
     </head>
-
     <body>
-        <div id="main">
+              <%
+            Connect dm = new Connect();
+            if (request.getParameter("eid") != null) {
+  ResultSet rs = dm.getData("select * from sales where s_id=" + request.getParameter("eid"));              
+  rs.next();
+        %>
+           <div id="main">
             <!-- #header -->
             <div id="header"> 
                 <!-- #logo --> 
@@ -84,39 +84,40 @@
 
                 <!-- /box -->
                 <div class="box">
-                    <table class="tab tab-drag">
-                        <tr class="top nodrop nodrag">
-                            <th >Sales Id</th>
-                            <th >Sale Date</th>
-                            <th>Customer Name</th>
-                            <th>Product Name</th>          
-                            <th>Quantity</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <%  int cnt = 1;
-                                while (rs.next()) {
-                            %>
-                        <tr>
+                    <div class="headlines">
+                        <h2><span>Sales Form</span></h2>
+                        <a href="#help" class="help"></a>
+                    </div>
+                    <div class="box-content">
+                        <form class="formBox" >
+                            <fieldset>
 
-                            <td><%=rs.getString("s_id")%></td>
-                            <td><%=rs.getString("s_date")%></td>
-                            <td><%=rs.getString("cust_name")%></td>
-                            <td><%=rs.getString("product_name")%></td>
-                            <td><%=rs.getString("quantity")%></td> 
 
-                            <td><a href="sales_edit.jsp?eid=<%=rs.getString(1)%>">Edit</a></td>
 
-                       
-                        <%
-                                cnt++;   
-                            } 
-                        %>
-                       
-                    
-                     </tr>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Date:</label></div>
+                                    <div class="con"><input type="text" class="input"  value="<%=rs.getString(2)%>  id="s_date" /></div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Customer Name:</label></div>
+                                    <div class="con"><input type="text" class="input"  value="<%= rs.getString(3) %> id="cust_name" /></div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Product Name:</label></div>
+                                    <div class="con"><input type="text" class="input"   value="<%= rs.getString(4) %> id="product_name" /></div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Quantity:</label></div>
+                                    <div class="con"><input type="text" class="input"  value="<%= rs.getString(5) %> id="quantity" /></div>
+                                </div>
 
-                    </table>
+                                <div class="btn-submit"><!-- Submit form -->
+                            <button id="sales" class="btn btn-default">Register</button> 
+                                  
+                                </div>
+                            </fieldset>    
+                        </form>
+                    </div><!-- /box-content -->
                 </div>
                 <!-- /box -->
 
@@ -128,7 +129,7 @@
             <div id="sidebar">
 
                 <!-- mainmenu -->
-                  <ul id="floatMenu" class="mainmenu">
+    <ul id="floatMenu" class="mainmenu">
                     <li class="first"><a href="#">Dashboard</a></li>
                     <li><a href="#">Income Expense</a>
                         <ul class="submenu">
@@ -160,7 +161,7 @@
             <!-- /#sidebar -->
             <!-- #footer -->
             <div id="footer">
-                <p>© 2010 Great Admin | <a href="#main">Top</a></p>
+                <p>Â© 2010 Great Admin | <a href="#main">Top</a></p>
             </div>
             <!-- /#footer -->
 
@@ -195,6 +196,5 @@
 
 
         </div>
-        <!-- /#main --> 
     </body>
 </html>

@@ -33,7 +33,27 @@ public class Connect {
         return conn;
         
     }
+ public int setdata(String query) throws SQLException {
+        getConnection();
+        int rows = -1;
+        try {
+            Statement s = Connect.getConnection().createStatement();
+            rows = s.executeUpdate(query);
+        } catch (SQLException ex) {
+        }
+        return rows;
+    }
 
+    public ResultSet getData(String query) throws SQLException {
+        getConnection();
+        ResultSet rs = null;
+        try {
+            Statement s = Connect.getConnection().createStatement();
+            rs = s.executeQuery(query);
+        } catch (SQLException ex) {
+        }
+        return rs;
+    }
    
 
 }
