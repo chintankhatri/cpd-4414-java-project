@@ -1,6 +1,6 @@
 <%-- 
-    Document   : display
-    Created on : 17-Apr-2015, 6:21:46 PM
+    Document   : income_expense
+    Created on : 18-Apr-2015, 4:43:59 PM
     Author     : chintan
 --%>
 <%
@@ -9,33 +9,18 @@
     } else {
 
 
+
     }
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.SQLException"%>
-<%@page import="java.util.logging.Logger"%>
-<%@page import="java.util.logging.Level"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="Connect.Connect"%>
 <!DOCTYPE html>
-<%
-    Connection conn = Connect.getConnection();
-    PreparedStatement psmt = null;
-    ResultSet rs = null;
-    psmt = conn.prepareStatement("SELECT * FROM income  where inc_type=1");
-    rs = psmt.executeQuery();
-
-
-%>
 <html>
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name='robots' content='all, follow' />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-        <title>sales</title>   
+        <title>Income Expense Form</title>   
         <link href="public/css/default.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="public/css/blue.css" rel="stylesheet" type="text/css" media="screen" /> <!-- color skin: blue / red / green / dark -->
         <link href="public/css/datePicker.css" rel="stylesheet" type="text/css" media="screen" />
@@ -52,9 +37,31 @@
         <script type="text/javascript" src="public/js/date.js"></script>
         <!--[if IE]><script type="text/javascript" src="public/js/jquery.bgiframe.js"></script><![endif]-->
         <script type="text/javascript" src="public/js/jquery.datePicker.js"></script>
-    </head>
+        <script src="jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#income').click(function() {
+                    $.ajax({
+                        url: "./f/income",
+                        dataType: "json",
+                        contentType: 'application/json; charset=UTF-8',
+                        data: JSON.stringify({
+                            "inc_date": $("#inc_date").val(),
+                            "inc_desc": $("#inc_desc").val(),
+                            "inc_amount": $("#inc_amount").val(),
+                            "inc_type": $("#inc_type").val()}),
+                        method: "post"
 
+
+
+                    });
+                });
+            });
+
+        </script>
+    </head>
     <body>
+<body>
         <div id="main">
             <!-- #header -->
             <div id="header"> 
@@ -64,7 +71,7 @@
                 </div>
                 <!-- /#logo -->
                 <!-- #user -->                        
-                   <div id="user">
+       <div id="user">
                     <h2>Welcome,&nbsp;<%= session.getAttribute("user")%> </h2> <a  style="font-size: 14px;" href="logout.jsp">logout</a>
                 </div>
                 <!-- /#user -->  
@@ -74,10 +81,13 @@
             <div id="content">
 
                 <!-- breadcrumbs -->
-           <div class="box" style="height: 380px;">
-                    <div class="headlines">
-                        <h2><span>Display Income</span></h2>
-                        <a href="#help" class="help"></a>
+                <div class="breadcrumbs">
+                    <ul>
+                        <li class="home"><a href="#">Homepage</a></li>
+                        <li><a href="#">Category</a></li>
+                        <li>Page</li>
+                    </ul>
+                </div>
                 <!-- /breadcrumbs -->
 
                 <!-- /box -->
@@ -87,40 +97,49 @@
 
                 <!-- /box -->
                 <div class="box">
-                    <table class="tab tab-drag">
-                        <tr class="top nodrop nodrag">
-                            <th >Id</th>
-                            <th >Transection Date</th>
-                            <th>Description</th>
-                            <th>Amount</th>          
-                           
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <%                            int cnt = 1;
-                                while (rs.next()) {
-                            %>
-                        <tr>
+                    <div class="headlines">
+                        <h2><span>Income Expense Form</span></h2>
+                        <a href="#help" class="help"></a>
+                    </div>
+                    <div class="box-content">
+                        <form class="formBox" >
+                            <fieldset>
 
-                            <td><%=rs.getString("inc_id")%></td>
-                            <td><%=rs.getString("inc_date")%></td>
-                            <td><%=rs.getString("inc_desc")%></td>
-                            <td><%=rs.getString("inc_amount")%></td>
 
-                            <td><b><span lang="en-us"><a href="delete.jsp?dincomeid=<%=rs.getString("inc_id")%>">Delete</a></span></b></td>
-                      
-                        <%
-                                cnt++;   /// increment of counter
-                            } /// End of while loop
-%>
-                        </tr>
 
-                    </table>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Date:</label></div>
+                                    <div class="con"><input type="date" class="input"  id="inc_date" /></div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Description:</label></div>
+                                    <div class="con"><input type="text" class="input" id="inc_desc" /></div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Amount:</label></div>
+                                    <div class="con"><input type="text" class="input"  id="inc_amount" /></div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="lab"><label for="input-three">Transaction type:</label></div>
+                                    <div class="con">
+<select class="select" id="inc_type">
+                                            <option value="0">Expense</option>
+                                            <option value="1">Income</option>
+                                        </select></div>
+                                </div>
+
+
+                                <div class="btn-submit"><!-- Submit form -->
+                                    <button id="income" class="btn btn-default">Insert</button> 
+
+                                </div>
+                            </fieldset>    
+                        </form>
+                    </div><!-- /box-content -->
                 </div>
                 <!-- /box -->
 
-  </div>
-                          </div>
+
 
             </div>
             <!-- /#content -->
@@ -128,7 +147,7 @@
             <div id="sidebar">
 
                 <!-- mainmenu -->
-         <ul id="floatMenu" class="mainmenu">
+                   <ul id="floatMenu" class="mainmenu">
                     <li class="first"><a href="#">Dashboard</a></li>
                     <li><a href="#">Income Expense</a>
                         <ul class="submenu">
@@ -142,13 +161,13 @@
                      <li><a href="#">Purchase</a>
                         <ul class="submenu">
                             <li><a href="display_purchase.jsp">Show Purchase</a></li>          
-                            <li><a href="purchase.jsp">New Purchase</a></li>
+                            <li><a href="purchase.html">New Purchase</a></li>
                         </ul>
                     </li>
                        <li><a href="#">Sales</a>
                         <ul class="submenu">
                             <li><a href="display_sales.jsp">Show Sales</a></li>          
-                            <li><a href="sales.jsp">New Sales</a></li>
+                            <li><a href="sales.html">New Sales</a></li>
                         </ul>
                     </li>
 
@@ -196,5 +215,6 @@
 
         </div>
         <!-- /#main --> 
+    </body>
     </body>
 </html>

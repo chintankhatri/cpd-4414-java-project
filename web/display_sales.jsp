@@ -8,8 +8,6 @@
         response.sendRedirect("index.jsp");
     } else {
 
-        response.sendRedirect("home.jsp");
-
     }
 %>
 
@@ -67,8 +65,7 @@
                 <!-- /#logo -->
                 <!-- #user -->                        
                 <div id="user">
-                    <h2>Forest Gump <span>(admin)</span></h2>
-                    <a href="#">7 messages</a> - <a href="#">settings</a> - <a href="index.html">logout</a>
+                    <h2>Welcome,&nbsp;<%= session.getAttribute("user")%> </h2> <a  style="font-size: 14px;" href="logout.jsp">logout</a>
                 </div>
                 <!-- /#user -->  
             </div>
@@ -77,58 +74,58 @@
             <div id="content">
 
                 <!-- breadcrumbs -->
-                <div class="breadcrumbs">
-                    <ul>
-                        <li class="home"><a href="#">Homepage</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li>Page</li>
-                    </ul>
-                </div>
-                <!-- /breadcrumbs -->
 
-                <!-- /box -->
+                <div class="box" style="height: 380px;">
+                    <div class="headlines">
+                        <h2><span>Display Purchase</span></h2>
+                        <a href="#help" class="help"></a>
+                        <!-- /breadcrumbs -->
+
+                        <!-- /box -->
 
 
-                <!-- /box -->
+                        <!-- /box -->
 
-                <!-- /box -->
-                <div class="box">
-                    <table class="tab tab-drag">
-                        <tr class="top nodrop nodrag">
-                            <th >Sales Id</th>
-                            <th >Sale Date</th>
-                            <th>Customer Name</th>
-                            <th>Product Name</th>          
-                            <th>Quantity</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <%  int cnt = 1;
-                                while (rs.next()) {
-                            %>
-                        <tr>
+                        <!-- /box -->
+                        <div class="box">
+                            <table class="tab tab-drag">
+                                <tr class="top nodrop nodrag">
+                                    <th >Sales Id</th>
+                                    <th >Sale Date</th>
+                                    <th>Customer Name</th>
+                                    <th>Product Name</th>          
+                                    <th>Quantity</th>
+                                    <th>Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <%  int cnt = 1;
+                                        while (rs.next()) {
+                                    %>
+                                <tr>
 
-                            <td><%=rs.getString("s_id")%></td>
-                            <td><%=rs.getString("s_date")%></td>
-                            <td><%=rs.getString("cust_name")%></td>
-                            <td><%=rs.getString("product_name")%></td>
-                            <td><%=rs.getString("quantity")%></td> 
- <td><a href="sales_edit.jsp?esalesid=<%=rs.getString(1)%>">Edit</a></td>
-                            <td><a href="delete.jsp?dsalesid=<%=rs.getString(1)%>">Delete</a></td>
-                     
-
-                            <%
-                                    cnt++;
-                                }
-                            %>
+                                    <td><%=rs.getString("s_id")%></td>
+                                    <td><%=rs.getString("s_date")%></td>
+                                    <td><%=rs.getString("cust_name")%></td>
+                                    <td><%=rs.getString("product_name")%></td>
+                                    <td><%=rs.getString("quantity")%></td> 
+                                    <td><%=rs.getString("amount")%></td> 
+                                    <td><a href="sales_edit.jsp?esalesid=<%=rs.getString(1)%>">Edit</a></td>
+                                    <td><a href="delete.jsp?dsalesid=<%=rs.getString(1)%>">Delete</a></td>
 
 
-                        </tr>
+                                    <%
+                                            cnt++;
+                                        }
+                                    %>
 
-                    </table>
-                </div>
-                <!-- /box -->
 
+                                </tr>
+
+                            </table>
+                        </div>
+                        <!-- /box -->
+                    </div>   </div>
 
 
             </div>
@@ -151,13 +148,13 @@
                     <li><a href="#">Purchase</a>
                         <ul class="submenu">
                             <li><a href="display_purchase.jsp">Show Purchase</a></li>          
-                            <li><a href="purchase.html">New Purchase</a></li>
+                            <li><a href="purchase.jsp">New Purchase</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Sales</a>
                         <ul class="submenu">
                             <li><a href="display_sales.jsp">Show Sales</a></li>          
-                            <li><a href="sales.html">New Sales</a></li>
+                            <li><a href="sales.jsp">New Sales</a></li>
                         </ul>
                     </li>
 
@@ -205,7 +202,7 @@
 
         </div>
         <!-- /#main --> 
-    
+
     </body>
 </html>
 

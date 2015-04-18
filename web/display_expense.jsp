@@ -8,7 +8,7 @@
         response.sendRedirect("index.jsp");
     } else {
 
-        response.sendRedirect("home.jsp");
+      
 
     }
 %>
@@ -65,9 +65,8 @@
                 </div>
                 <!-- /#logo -->
                 <!-- #user -->                        
-                <div id="user">
-                    <h2>Forest Gump <span>(admin)</span></h2>
-                    <a href="#">7 messages</a> - <a href="#">settings</a> - <a href="index.html">logout</a>
+                  <div id="user">
+                    <h2>Welcome,&nbsp;<%= session.getAttribute("user")%> </h2> <a  style="font-size: 14px;" href="logout.jsp">logout</a>
                 </div>
                 <!-- /#user -->  
             </div>
@@ -76,13 +75,13 @@
             <div id="content">
 
                 <!-- breadcrumbs -->
-                <div class="breadcrumbs">
-                    <ul>
-                        <li class="home"><a href="#">Homepage</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li>Page</li>
-                    </ul>
-                </div>
+                <div class="box" style="height: 380px;">
+                    <div class="headlines">
+                        <h2><span>Display Expense</span></h2>
+                        <a href="#help" class="help"></a>
+                  
+                 
+            
                 <!-- /breadcrumbs -->
 
                 <!-- /box -->
@@ -113,7 +112,7 @@
                             <td><%=rs.getString("inc_amount")%></td>
 
 
-                            <td><b><span lang="en-us"><a href="buyBook.jsp">Edit</a></span></b></td>
+                            <td><b><span lang="en-us"><a href="delete.jsp?dexpenseid=<%=rs.getString("inc_id")%>">Delete</a></span></b></td>
 
                             <%
                                     cnt++;
@@ -124,8 +123,8 @@
                     </table>
                 </div>
                 <!-- /box -->
-
-
+  </div>
+    </div>
 
             </div>
             <!-- /#content -->
@@ -147,13 +146,13 @@
                     <li><a href="#">Purchase</a>
                         <ul class="submenu">
                             <li><a href="display_purchase.jsp">Show Purchase</a></li>          
-                            <li><a href="purchase.html">New Purchase</a></li>
+                            <li><a href="purchase.jsp">New Purchase</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Sales</a>
                         <ul class="submenu">
                             <li><a href="display_sales.jsp">Show Sales</a></li>          
-                            <li><a href="sales.html">New Sales</a></li>
+                            <li><a href="sales.jsp">New Sales</a></li>
                         </ul>
                     </li>
 

@@ -32,12 +32,14 @@ public class Sales {
             String cust_name = json.getString("cust_name");
             String product_name = json.getString("product_name");
             String quantity = json.getString("quantity");
+               String amount = json.getString("amount");
             Connection conn = getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO sales (s_date,cust_name,product_name,quantity) VALUES (?,?,?,?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO sales (s_date,cust_name,product_name,quantity,amount) VALUES (?,?,?,?,?)");
             pstmt.setString(1, s_date);
             pstmt.setString(2, cust_name);
             pstmt.setString(3, product_name);
             pstmt.setString(4, quantity);
+             pstmt.setString(5, amount);
             pstmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Sales.class.getName()).log(Level.SEVERE, null, ex);

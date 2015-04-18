@@ -1,12 +1,8 @@
-<%
-    if (session.getAttribute("user") == null) {
-        response.sendRedirect("index.jsp");
-    } else {
 
-        response.sendRedirect("home.jsp");
-
-    }
-%>
+<%@page import="Connect.Connect"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
 
@@ -19,12 +15,11 @@
         <link href="public/css/default.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="public/css/blue.css" rel="stylesheet" type="text/css" media="screen" /> <!-- color skin: blue / red / green / dark -->
         <link href="public/css/datePicker.css" rel="stylesheet" type="text/css" media="screen" />
- 
+
         <link href="public/css/visualize.css" rel="stylesheet" type="text/css" media="screen" />
 
         <script type="text/javascript" src="public/js/jquery-1.4.2.min.js"></script>   
         <script type="text/javascript" src="public/js/jquery.dimensions.min.js"></script>
-
 
 
 
@@ -33,7 +28,7 @@
         <!--[if IE]><script type="text/javascript" src="public/js/jquery.bgiframe.js"></script><![endif]-->
         <script type="text/javascript" src="public/js/jquery.datePicker.js"></script>
         <script src="jquery.min.js"></script>
-   
+
     </head>   
     <body>
         <div id="main">
@@ -75,7 +70,34 @@
                         <h2><span>Home</span></h2>
                         <a href="#help" class="help"></a>
                     </div>
-                 
+                    <%
+                        Connection conn = Connect.getConnection();
+                        PreparedStatement psmt = null;
+                        ResultSet rs = null;
+                        psmt = conn.prepareStatement("SELECT sum(amount),s_date FROM sales where YEAR(s_date) = YEAR(CURDATE()) AND MONTH(s_date) = MONTH(CURDATE())");
+                        rs = psmt.executeQuery();
+                        rs.next();
+
+                    %>
+                    <div class="box">
+                        <table class="tab tab-drag">
+                            <tr class="top nodrop nodrag">
+                                <th >Total Sales This Month</th>
+
+                            </tr>
+                            <tr>
+
+
+
+                                <td><%=rs.getString(1)%></td>
+
+
+
+
+                            </tr>
+
+                        </table>
+                    </div>
                 </div>
                 <!-- /box -->
 
@@ -87,7 +109,7 @@
             <div id="sidebar">
 
                 <!-- mainmenu -->
-                  <ul id="floatMenu" class="mainmenu">
+                <ul id="floatMenu" class="mainmenu">
                     <li class="first"><a href="#">Dashboard</a></li>
                     <li><a href="#">Income Expense</a>
                         <ul class="submenu">
@@ -95,16 +117,16 @@
                             <li><a href="display_expense.jsp">Show Expense</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Add new Transection</a>
-                     
+                    <li><a href="#">Add new Transection</a>
+
                     </li>
-                     <li><a href="#">Purchase</a>
+                    <li><a href="#">Purchase</a>
                         <ul class="submenu">
                             <li><a href="display_purchase.jsp">Show Purchase</a></li>          
                             <li><a href="purchase.html">New Purchase</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Sales</a>
+                    <li><a href="#">Sales</a>
                         <ul class="submenu">
                             <li><a href="display_sales.jsp">Show Sales</a></li>          
                             <li><a href="sales.html">New Sales</a></li>
