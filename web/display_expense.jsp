@@ -106,10 +106,10 @@
                     
 
                             <td><b><span lang="en-us"><a href="buyBook.jsp">Edit</a></span></b></td>
-                        </tr>
+                       
                         <%
-                                cnt++;   /// increment of counter
-                            } /// End of while loop
+                                cnt++;  
+                            } 
 %>
                         </tr>
 

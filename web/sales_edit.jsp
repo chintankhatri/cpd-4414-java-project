@@ -1,32 +1,32 @@
-
 <%-- 
-    Document   : index
-    Created on : 5-Apr-2015, 3:33:21 PM
-    Author     : c0646395
+    Document   : display
+    Created on : 17-Apr-2015, 6:21:46 PM
+    Author     : chintan
 --%>
-<%@page import="java.sql.*"%>
-<%@page import="java.util.Date" %>
+
+
+<%@page import="java.sql.SQLException"%>
+
+<%@page import="java.sql.ResultSet"%>
+
 <%@page import="Connect.Connect"%>
-<% Class.forName("com.mysql.jdbc.Driver"); %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
-
-
 
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-          <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name='robots' content='all, follow' />
         <meta name="description" content="" />
         <meta name="keywords" content="" />
-       
+
         <link href="public/css/default.css" rel="stylesheet" type="text/css" media="screen" />
         <link href="public/css/blue.css" rel="stylesheet" type="text/css" media="screen" /> <!-- color skin: blue / red / green / dark -->
         <link href="public/css/datePicker.css" rel="stylesheet" type="text/css" media="screen" />
- 
+
         <link href="public/css/visualize.css" rel="stylesheet" type="text/css" media="screen" />
 
         <script type="text/javascript" src="public/js/jquery-1.4.2.min.js"></script>   
@@ -42,13 +42,8 @@
         <script src="jquery.min.js"></script>
     </head>
     <body>
-              <%
-            Connect dm = new Connect();
-            if (request.getParameter("eid") != null) {
-  ResultSet rs = dm.getData("select * from sales where s_id=" + request.getParameter("eid"));              
-  rs.next();
-        %>
-           <div id="main">
+
+        <div id="main">
             <!-- #header -->
             <div id="header"> 
                 <!-- #logo --> 
@@ -91,29 +86,36 @@
                     <div class="box-content">
                         <form class="formBox" >
                             <fieldset>
-
+        <%
+            ResultSet rs;
+            Connect dm = new Connect();
+            if (request.getParameter("esalesid") != null) {
+                  rs = dm.getData("select * from sales where s_id=" + request.getParameter("esalesid"));
+                rs.next();
+}
+        %>
 
 
                                 <div class="clearfix">
                                     <div class="lab"><label for="input-three">Date:</label></div>
-                                    <div class="con"><input type="text" class="input"  value="<%=rs.getString(2)%>  id="s_date" /></div>
+                                    <div class="con"><input type="text" class="input"  value="<%= rs.getString(1)%>"  id="s_date" /></div>
                                 </div>
                                 <div class="clearfix">
                                     <div class="lab"><label for="input-three">Customer Name:</label></div>
-                                    <div class="con"><input type="text" class="input"  value="<%= rs.getString(3) %> id="cust_name" /></div>
+                                    <div class="con"><input type="text" class="input"  value="<%= rs.getString(2)%>" id="cust_name" /></div>
                                 </div>
                                 <div class="clearfix">
                                     <div class="lab"><label for="input-three">Product Name:</label></div>
-                                    <div class="con"><input type="text" class="input"   value="<%= rs.getString(4) %> id="product_name" /></div>
+                                    <div class="con"><input type="text" class="input"   value="<%= rs.getString(3)%>" id="product_name" /></div>
                                 </div>
                                 <div class="clearfix">
                                     <div class="lab"><label for="input-three">Quantity:</label></div>
-                                    <div class="con"><input type="text" class="input"  value="<%= rs.getString(5) %> id="quantity" /></div>
+                                    <div class="con"><input type="text" class="input"  value="<%= rs.getString(4)%>" id="quantity" /></div>
                                 </div>
 
                                 <div class="btn-submit"><!-- Submit form -->
-                            <button id="sales" class="btn btn-default">Register</button> 
-                                  
+                                    <button id="sales" class="btn btn-default">Register</button> 
+
                                 </div>
                             </fieldset>    
                         </form>
@@ -129,7 +131,7 @@
             <div id="sidebar">
 
                 <!-- mainmenu -->
-    <ul id="floatMenu" class="mainmenu">
+                <ul id="floatMenu" class="mainmenu">
                     <li class="first"><a href="#">Dashboard</a></li>
                     <li><a href="#">Income Expense</a>
                         <ul class="submenu">
@@ -137,16 +139,16 @@
                             <li><a href="display_expense.jsp">Show Expense</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Add new Transection</a>
-                     
+                    <li><a href="#">Add new Transection</a>
+
                     </li>
-                     <li><a href="#">Purchase</a>
+                    <li><a href="#">Purchase</a>
                         <ul class="submenu">
                             <li><a href="display_purchase.jsp">Show Purchase</a></li>          
                             <li><a href="purchase.html">New Purchase</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Sales</a>
+                    <li><a href="#">Sales</a>
                         <ul class="submenu">
                             <li><a href="display_sales.jsp">Show Sales</a></li>          
                             <li><a href="sales.html">New Sales</a></li>
@@ -161,7 +163,7 @@
             <!-- /#sidebar -->
             <!-- #footer -->
             <div id="footer">
-                <p>Â© 2010 Great Admin | <a href="#main">Top</a></p>
+                <p>© 2010 Great Admin | <a href="#main">Top</a></p>
             </div>
             <!-- /#footer -->
 

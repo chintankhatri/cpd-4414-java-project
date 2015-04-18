@@ -105,7 +105,7 @@
                             <td><%=rs.getString("inc_amount")%></td>
 
                             <td><b><span lang="en-us"><a href="buyBook.jsp">Edit</a></span></b></td>
-                        </tr>
+                      
                         <%
                                 cnt++;   /// increment of counter
                             } /// End of while loop

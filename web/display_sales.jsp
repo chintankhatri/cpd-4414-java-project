@@ -105,7 +105,7 @@
                             <td><%=rs.getString("cust_name")%></td>
                             <td><%=rs.getString("product_name")%></td>
                             <td><%=rs.getString("quantity")%></td> 
-
+ <td><a href="sales_edit.jsp?esalesid=<%=rs.getString(1)%>">Edit</a></td>
                             <td><a href="delete.jsp?dsalesid=<%=rs.getString(1)%>">Delete</a></td>
                      
 
