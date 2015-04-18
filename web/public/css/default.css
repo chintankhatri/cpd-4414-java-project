@@ -309,9 +309,9 @@ a:hover.ico   { background-position: 0 0; }
 
 /* -- Form message -- */
 .form-message          { display: block; padding: 10px 20px 10px 35px; margin-bottom: 20px; border: 1px solid; -webkit-border-radius: 6px; border-radius: 6px; -moz-border-radius: 6px; }
-.form-message.correct  { border-color: #a8f383; background: #e4ffd4 url(../images/ico/correct.gif) 10px 11px no-repeat; }
-.form-message.error    { border-color: #f3a48c; background: #ffded4 url(../images/ico/error.gif) 10px 11px no-repeat; }
-.form-message.warning  { border-color: #fbea81; background: #fff9d4 url(../images/ico/warning.gif) 10px 11px no-repeat; }
+.form-message.correct  { border-color: #a8f383; background: #e4ffd4  10px 11px no-repeat; }
+.form-message.error    { border-color: #f3a48c; background: #ffded4  10px 11px no-repeat; }
+.form-message.warning  { border-color: #fbea81; background: #fff9d4  10px 11px no-repeat; }
 
 .form-message p        { margin: 0 !important; }
 .form-message ul       { margin: 5px 0 0 20px; padding: 0; }

@@ -74,50 +74,70 @@
                         Connection conn = Connect.getConnection();
                         PreparedStatement psmt = null;
                         ResultSet rs = null;
-                         ResultSet prs = null;
-                            ResultSet irs = null;
-                            ResultSet ers = null;
+                        ResultSet prs = null;
+                        ResultSet irs = null;
+                        ResultSet ers = null;
                         psmt = conn.prepareStatement("SELECT sum(amount),s_date FROM sales where YEAR(s_date) = YEAR(CURDATE()) AND MONTH(s_date) = MONTH(CURDATE())");
                         rs = psmt.executeQuery();
                         rs.next();
-                                psmt = conn.prepareStatement("SELECT sum(amount),p_date FROM purchase where YEAR(p_date) = YEAR(CURDATE()) AND MONTH(p_date) = MONTH(CURDATE())");
+                        psmt = conn.prepareStatement("SELECT sum(amount),p_date FROM purchase where YEAR(p_date) = YEAR(CURDATE()) AND MONTH(p_date) = MONTH(CURDATE())");
                         prs = psmt.executeQuery();
                         prs.next();
-                        
-                               psmt = conn.prepareStatement("SELECT sum(inc_amount),inc_date FROM income where YEAR(inc_date) = YEAR(CURDATE()) AND MONTH(inc_date) = MONTH(CURDATE()) and inc_type=1");
+
+                        psmt = conn.prepareStatement("SELECT sum(inc_amount),inc_date FROM income where YEAR(inc_date) = YEAR(CURDATE()) AND MONTH(inc_date) = MONTH(CURDATE()) and inc_type=1");
                         irs = psmt.executeQuery();
                         irs.next();
-                              psmt = conn.prepareStatement("SELECT sum(inc_amount),inc_date FROM income where YEAR(inc_date) = YEAR(CURDATE()) AND MONTH(inc_date) = MONTH(CURDATE()) and inc_type=0");
+                        psmt = conn.prepareStatement("SELECT sum(inc_amount),inc_date FROM income where YEAR(inc_date) = YEAR(CURDATE()) AND MONTH(inc_date) = MONTH(CURDATE()) and inc_type=0");
                         ers = psmt.executeQuery();
                         ers.next();
 
                     %>
                     <div class="box" style="height: 200px;">
-                        <table>
+                        <center>   <table>
                             <tr>
-                                <td>Total Sales This Month:</td><td></td><td> <b><%=rs.getString(1)%></b></td>
+                                <td>
+                                    <div class="form-message correct">
+                                        <p>Total Sales This Month:</p>
+                                        <p> <%=rs.getString(1)%></p>
+                                    </div>
+                                </td>
+                                      <td>
+                                    <div class="form-message error">
+                                        <p>Total Purchase This Month:</p>
+                                        <p> <%=prs.getString(1)%></p>
+                                    </div>
+                                </td>
                             </tr>
                             <tr>
-                                <td>Total Purchase This Month:</td><td></td><td><b><%=prs.getString(1)%></b></td>
+                                <td>
+                                    <div class="form-message correct">
+                                        <p>Total Income This Month:</p>
+                                        <p> <%=irs.getString(1)%></p>
+                                    </div>
+                                </td>
+                                      <td>
+                                    <div class="form-message error">
+                                        <p>Total Expense This Month:</p>
+                                        <p> <%=ers.getString(1)%></p>
+                                    </div>
+                                </td>
                             </tr>
-                             <tr>
-                                <td>Total Income This Month:</td><td></td><td><b><%=irs.getString(1)%></b></td>
-                            </tr>
-                             <tr>
-                                <td>Total Expense This Month:</td><td></td><td><b><%=ers.getString(1)%></b></td>
-                            </tr>
-                        </table>
-                                
-                                 
-                   
+                         
+                           
 
 
-                             
+                            </table></center>
 
 
 
 
-                       
+
+
+
+
+
+
+
 
                     </div>
                 </div>
