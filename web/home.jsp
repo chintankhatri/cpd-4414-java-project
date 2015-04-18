@@ -1,3 +1,12 @@
+<%
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect("index.jsp");
+    } else {
+
+        response.sendRedirect("home.jsp");
+
+    }
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
 
@@ -37,8 +46,7 @@
                 <!-- /#logo -->
                 <!-- #user -->                        
                 <div id="user">
-                    <h2>Forest Gump <span>(admin)</span></h2>
-                    <a href="#">7 messages</a> - <a href="#">settings</a> - <a href="index.html">logout</a>
+                    <h2>Welcome,&nbsp;<%= session.getAttribute("user")%> </h2> <a  style="font-size: 14px;" href="logout.jsp">logout</a>
                 </div>
                 <!-- /#user -->  
             </div>

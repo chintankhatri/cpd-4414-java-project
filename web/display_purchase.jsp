@@ -3,7 +3,15 @@
     Created on : 17-Apr-2015, 6:21:46 PM
     Author     : chintan
 --%>
+<%
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect("index.jsp");
+    } else {
 
+        response.sendRedirect("home.jsp");
+
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.logging.Logger"%>

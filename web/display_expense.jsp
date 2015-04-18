@@ -3,7 +3,15 @@
     Created on : 17-Apr-2015, 6:21:46 PM
     Author     : chintan
 --%>
+<%
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect("index.jsp");
+    } else {
 
+        response.sendRedirect("home.jsp");
+
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.logging.Logger"%>
@@ -90,7 +98,7 @@
                             <th >Transection Date</th>
                             <th>Description</th>
                             <th>Amount</th>          
-                           
+
                             <th>Action</th>
                         </tr>
                         <tr>
@@ -103,14 +111,14 @@
                             <td><%=rs.getString("inc_date")%></td>
                             <td><%=rs.getString("inc_desc")%></td>
                             <td><%=rs.getString("inc_amount")%></td>
-                    
+
 
                             <td><b><span lang="en-us"><a href="buyBook.jsp">Edit</a></span></b></td>
-                       
-                        <%
-                                cnt++;  
-                            } 
-%>
+
+                            <%
+                                    cnt++;
+                                }
+                            %>
                         </tr>
 
                     </table>
@@ -133,16 +141,16 @@
                             <li><a href="display_expense.jsp">Show Expense</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Add new Transection</a>
-                     
+                    <li><a href="#">Add new Transection</a>
+
                     </li>
-                     <li><a href="#">Purchase</a>
+                    <li><a href="#">Purchase</a>
                         <ul class="submenu">
                             <li><a href="display_purchase.jsp">Show Purchase</a></li>          
                             <li><a href="purchase.html">New Purchase</a></li>
                         </ul>
                     </li>
-                       <li><a href="#">Sales</a>
+                    <li><a href="#">Sales</a>
                         <ul class="submenu">
                             <li><a href="display_sales.jsp">Show Sales</a></li>          
                             <li><a href="sales.html">New Sales</a></li>
