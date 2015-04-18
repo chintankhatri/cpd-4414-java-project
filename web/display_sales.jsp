@@ -22,6 +22,7 @@
 
 
 %>
+
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -105,7 +106,7 @@
                             <td><%=rs.getString("product_name")%></td>
                             <td><%=rs.getString("quantity")%></td> 
 
-                            <td><a href="f/form/did?id=<%=rs.getString(1)%>">Edit</a></td>
+                            <td><a href="delete.jsp?dsalesid=<%=rs.getString(1)%>">Delete</a></td>
                      
 
                             <%
