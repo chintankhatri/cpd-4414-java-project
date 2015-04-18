@@ -35,8 +35,8 @@
             <!-- #header -->
             <div id="header"> 
                 <!-- #logo --> 
-                <div id="logo">
-                    <a href="#" title="Go to Homepage"><span>Great Admin</span></a>
+                <div >
+                    <a href="#" title="Go to Homepage"><span>E-Accounts</span></a>
                 </div>
                 <!-- /#logo -->
                 <!-- #user -->                        
@@ -74,29 +74,51 @@
                         Connection conn = Connect.getConnection();
                         PreparedStatement psmt = null;
                         ResultSet rs = null;
+                         ResultSet prs = null;
+                            ResultSet irs = null;
+                            ResultSet ers = null;
                         psmt = conn.prepareStatement("SELECT sum(amount),s_date FROM sales where YEAR(s_date) = YEAR(CURDATE()) AND MONTH(s_date) = MONTH(CURDATE())");
                         rs = psmt.executeQuery();
                         rs.next();
+                                psmt = conn.prepareStatement("SELECT sum(amount),p_date FROM purchase where YEAR(p_date) = YEAR(CURDATE()) AND MONTH(p_date) = MONTH(CURDATE())");
+                        prs = psmt.executeQuery();
+                        prs.next();
+                        
+                               psmt = conn.prepareStatement("SELECT sum(inc_amount),inc_date FROM income where YEAR(inc_date) = YEAR(CURDATE()) AND MONTH(inc_date) = MONTH(CURDATE()) and inc_type=1");
+                        irs = psmt.executeQuery();
+                        irs.next();
+                              psmt = conn.prepareStatement("SELECT sum(inc_amount),inc_date FROM income where YEAR(inc_date) = YEAR(CURDATE()) AND MONTH(inc_date) = MONTH(CURDATE()) and inc_type=0");
+                        ers = psmt.executeQuery();
+                        ers.next();
 
                     %>
-                    <div class="box">
-                        <table class="tab tab-drag">
-                            <tr class="top nodrop nodrag">
-                                <th >Total Sales This Month</th>
-
+                    <div class="box" style="height: 200px;">
+                        <table>
+                            <tr>
+                                <td>Total Sales This Month:</td><td></td><td> <b><%=rs.getString(1)%></b></td>
                             </tr>
                             <tr>
-
-
-
-                                <td><%=rs.getString(1)%></td>
-
-
-
-
+                                <td>Total Purchase This Month:</td><td></td><td><b><%=prs.getString(1)%></b></td>
                             </tr>
-
+                             <tr>
+                                <td>Total Income This Month:</td><td></td><td><b><%=irs.getString(1)%></b></td>
+                            </tr>
+                             <tr>
+                                <td>Total Expense This Month:</td><td></td><td><b><%=ers.getString(1)%></b></td>
+                            </tr>
                         </table>
+                                
+                                 
+                   
+
+
+                             
+
+
+
+
+                       
+
                     </div>
                 </div>
                 <!-- /box -->

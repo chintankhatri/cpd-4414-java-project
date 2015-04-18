@@ -31,11 +31,9 @@
 
 
 
-        <!-- // Date Picker // -->
-        <script type="text/javascript" src="public/js/date.js"></script>
-        <!--[if IE]><script type="text/javascript" src="public/js/jquery.bgiframe.js"></script><![endif]-->
-        <script type="text/javascript" src="public/js/jquery.datePicker.js"></script>
         <script src="jquery.min.js"></script>
+        
+     
         <script>
             $(document).ready(function() {
                 $('#purchase').click(function() {
@@ -58,12 +56,7 @@
             });
 
         </script>
-        <script>
-            $('#quantity').on('keyup', function() {
-                var tot = $('#price').val() * this.value;
-                $('#total').val(tot);
-            });
-        </script>
+      
     </head>
     <body>
         <div id="main">
@@ -132,6 +125,12 @@
                                     <div class="lab"><label for="input-three">Price:</label></div>
                                     <div class="con"><input type="text" class="input"  id="amount" /></div>
                                 </div>
+                                
+                                
+                                   
+                
+                                
+                                
                                 <div class="btn-submit"><!-- Submit form -->
                                     <button id="purchase" class="btn btn-default">Insert</button> 
 
@@ -217,5 +216,7 @@
 
 
         </div>
+                
     </body>
+      
 </html>
