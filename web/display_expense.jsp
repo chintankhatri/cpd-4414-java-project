@@ -133,14 +133,14 @@
 
                 <!-- mainmenu -->
                 <ul id="floatMenu" class="mainmenu">
-                    <li class="first"><a href="#">Dashboard</a></li>
+                    <li class="first"><a href="home.jsp">Dashboard</a></li>
                     <li><a href="#">Income Expense</a>
                         <ul class="submenu">
                             <li><a href="display_income.jsp">Show Income</a></li>          
                             <li><a href="display_expense.jsp">Show Expense</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Add new Transection</a>
+                    <li><a href="income_expense.jsp">Add new Transection</a>
 
                     </li>
                     <li><a href="#">Purchase</a>
@@ -156,7 +156,7 @@
                         </ul>
                     </li>
 
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="logout.jsp">Logout</a></li>
                 </ul>
                 <!-- /.mainmenu -->
 
