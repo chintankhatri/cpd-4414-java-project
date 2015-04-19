@@ -50,13 +50,7 @@
             <div id="content">
 
                 <!-- breadcrumbs -->
-                <div class="breadcrumbs">
-                    <ul>
-                        <li class="home"><a href="#">Homepage</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li>Page</li>
-                    </ul>
-                </div>
+            
                 <!-- /breadcrumbs -->
 
                 <!-- /box -->
@@ -98,13 +92,13 @@
                                 <td>
                                     <div class="form-message correct">
                                         <p>Total Sales This Month:</p>
-                                        <p> <%=rs.getString(1)%></p>
+                                        <p><b>$ <%=rs.getString(1)%></b></p>
                                     </div>
                                 </td>
                                       <td>
                                     <div class="form-message error">
                                         <p>Total Purchase This Month:</p>
-                                        <p> <%=prs.getString(1)%></p>
+                                        <p><b> $<%=prs.getString(1)%></b></p>
                                     </div>
                                 </td>
                             </tr>
@@ -112,13 +106,13 @@
                                 <td>
                                     <div class="form-message correct">
                                         <p>Total Income This Month:</p>
-                                        <p> <%=irs.getString(1)%></p>
+                                        <p> <b>$<%=irs.getString(1)%></b></p>
                                     </div>
                                 </td>
                                       <td>
                                     <div class="form-message error">
                                         <p>Total Expense This Month:</p>
-                                        <p> <%=ers.getString(1)%></p>
+                                        <p><b>$ <%=ers.getString(1)%></b></p>
                                     </div>
                                 </td>
                             </tr>

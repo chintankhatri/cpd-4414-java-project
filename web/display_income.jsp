@@ -59,7 +59,7 @@
             <!-- #header -->
             <div id="header"> 
                 <!-- #logo --> 
-                <div id="logo">
+                <div >
                     <a href="#" title="Go to Homepage"><span>Great Admin</span></a>
                 </div>
                 <!-- /#logo -->

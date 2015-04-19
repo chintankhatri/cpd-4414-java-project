@@ -64,7 +64,7 @@
             <!-- #header -->
             <div id="header"> 
                 <!-- #logo --> 
-                <div id="logo">
+                <div >
                     <a href="#" title="Go to Homepage"><span>Great Admin</span></a>
                 </div>
                 <!-- /#logo -->
@@ -79,13 +79,7 @@
             <div id="content">
 
                 <!-- breadcrumbs -->
-                <div class="breadcrumbs">
-                    <ul>
-                        <li class="home"><a href="#">Homepage</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li>Page</li>
-                    </ul>
-                </div>
+       
                 <!-- /breadcrumbs -->
 
                 <!-- /box -->
@@ -126,7 +120,7 @@
                                     <div class="con"><input type="text" class="input"  id="amount" /></div>
                                 </div>
                                 <div class="btn-submit"><!-- Submit form -->
-                                    <button id="sales" class="btn btn-default">Register</button> 
+                                    <button id="sales" class="btn btn-default">Insert</button> 
 
                                 </div>
                             </fieldset>    

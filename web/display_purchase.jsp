@@ -58,12 +58,12 @@
             <!-- #header -->
             <div id="header"> 
                 <!-- #logo --> 
-                <div id="logo">
-                    <a href="#" title="Go to Homepage"><span>Great Admin</span></a>
+                <div >
+                    <a href="#" title="Go to Homepage"><span></span></a>
                 </div>
                 <!-- /#logo -->
                 <!-- #user -->                        
-                <div id="user">
+                <div >
                     <h2>Welcome,&nbsp;<%= session.getAttribute("user")%> </h2> <a  style="font-size: 14px;" href="logout.jsp">logout</a>
                 </div>
                 <!-- /#user -->  
